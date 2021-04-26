@@ -50,18 +50,30 @@ console.log("\n"); // End Question #3.
 //   - Loop over the array and console.log each album's information formatted like: `TITLE by ARTIST, published in YEAR`.
 console.log("--- Question #4. ---");
 const showCollection = array => {
-  console.log(`The number of items in this array is: `, array.length);
-  for (let album in collection) {
-    console.log(`${collection.title} by ${collection.artist}, published in ${collection.year}.`)
+  console.log(`The number of albums in this list is: `, array.length);
+  let albumCount = 1; // This is unnecessary and not requested, but I'd like my console.log to include an Album Count (e.g., "Album #1 is ... Album #2 is ..." etc.), so I'm adding a counter into the function. :)
+  for (let i in array) {
+    console.log(`Album #${albumCount}: ${collection[i].title} by ${collection[i].artist}, published in ${collection[i].yearPublished}.`);
+    albumCount++;
   } // End "for album in collection" loop.
 }; // End "showCollection".
 console.log("The 'showCollection' function has been created.  Tested in next question.");
 console.log("\n"); // End Question #4.
 
 
+// console.log("--- Tests, Delete After ---");
+// // Ryan's Comments: So I have an array of objects.  The array is "collection", and each object is an album with TITLE, ARTIST, and YEAR inside.  I need to access the array --> object --> property specifically.  What's the syntax for that.
+// // console.log(array[i]); // This works and logs each object as it's listed in the array, but not in the format they want.
+// console.log(collection);
+// console.log(collection[0]);
+// console.log(collection[0].title);
+// console.log("\n"); // End Tests.
+
+
+
 // - #5.) Test the `showCollection` function.
 console.log("--- Question #5. ---");
-
+showCollection(collection);
 console.log("\n"); // End Question #5.
 
 
