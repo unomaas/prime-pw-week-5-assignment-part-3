@@ -14,8 +14,9 @@ console.log("\n"); // End Question #1.
 //   - Create a new object having the above properties (DONE)
 //   - Add the new object to the end of the `collection` array (DONE)
 //   - Return the newly created object (DONE)
+//   - STRETCH #2: Update the `addToCollection` function to also take an input parameter for the array of tracks. trackName
 console.log("--- Question #2. ---");
-const addToCollection = (title, artist, yearPublished) => { // To practice conventionally declaring functions, since we can't use concise arrow notation in jQuery, it'd be: function addToCollection(title, artist, yearPublished) {}
+const addToCollection = (title, artist, yearPublished, tracks) => { // To practice conventionally declaring functions, since we can't use concise arrow notation in jQuery, it'd be: function addToCollection(title, artist, yearPublished) {}
   let addition = {
     title: title,
     artist: artist,
@@ -39,7 +40,7 @@ console.log(`Adding Album 3 of 6 via 'addToCollection' function: `, addToCollect
 console.log(`Adding Album 4 of 6 via 'addToCollection' function: `, addToCollection("The Eminem Show", "Eminem", 2002));
 console.log(`Adding Album 5 of 6 via 'addToCollection' function: `, addToCollection("Encore", "Eminem", 2004));
 console.log(`Adding Album 6 of 6 via 'addToCollection' function: `, addToCollection("D12 World", "D12", 2004));
-console.log(`Showing the 'collection' array (expect 6 object literals): `, collection);
+console.log(`Showing the 'collection' array (expect '6' results): `, collection);
 console.log("\n"); // End Question #3.
 
 
@@ -109,34 +110,34 @@ console.log("\n"); // End Question #7.
 // - #S1.) Create a function called `search`. This function should:
 //   - Take an input parameter for a search criteria object. The search criteria might look sosomething like this:
 //      { artist: 'Ray Charles', year: 1957 }
-//   - Return a new array of all items in the `collection` matching *all* of the search criteria.
-//   - If no results are found, return an empty array.
-//   - If there is no search object or an empty search object provided as input, then return all albums in the `collection`.
+//   - Return a new array of all items in the `collection` matching *all* of the search criteria. (DONE)
+//   - If no results are found, return an empty array. (DONE)
+//   - If there is no search object or an empty search object provided as input, then return all albums in the `collection`. (DONE)
 console.log("--- Stretch #1. ---");
-const search = (object1, object2) => {
-  if ((object1 == "") && (object2 == "")) { // If empty search critera conditional:
+const search = (artist, year) => {
+  if ((artist == "" || year == "") || (artist == null && year == null) || (artist == undefined && year == undefined)) { // If empty search critera conditional:
     return collection; // Return all albums in 'collection'.
   } // End empty search criteria conditional.
   let results = [];
   for (let i in collection) {
-    if ((object1 == collection[i].artist || object1 == collection[i].title || object1 == collection[i].yearPublished) && (object2 == collection[i].artist || object2 == collection[i].title || object2 == collection[i].yearPublished)) { // If object matches any of the artist, title, OR yearPublished info:
+    if ((artist == collection[i].artist || artist == collection[i].title || artist == collection[i].yearPublished) || (year == collection[i].artist || year == collection[i].title || year == collection[i].yearPublished)) { // If (artist matches any of the artist, title, OR yearPublished info) AND (year matches any of the artist, title, OR yearPublished info):
       results.push(collection[i]); // Add it to the new 'results' array.
     } // End "if object == collection" conditional.
   } // End "for i in collection" loop.
   return results;
 }; // End "search".
 console.log("The 'search' function has been created.  Tested below.");
-console.log(`Testing 'search("Eminem")' function (expect '2' results): `, search("Eminem"));
-console.log(`Testing 'search("2004")' function (expect '2' results): `, search("2004"));
-console.log(`Testing 'search("The Sickness")' function (expect '1' result): `, search("The Sickness"));
+console.log(`Testing 'search("Eminem")' function (expect '2' results): `, search("Eminem")); // Broken by adding year parameter.
+console.log(`Testing 'search("2004")' function (expect '2' results): `, search("2004")); // Broken by adding year parameter.
+console.log(`Testing 'search("The Sickness")' function (expect '1' result): `, search("The Sickness")); // Broken by adding year parameter.
 console.log(`Testing 'search()' function empty conditional (expect '6' results): `, search());
 console.log(`Testing 'search("")' function empty conditional (expect '6' results): `, search(""));
-console.log(`Testing 'search("Eminem", 2002)' function (expect '2' results): `, search("Eminem", 2002));
+console.log(`Testing 'search("Eminem", 2002)' function (expect '1' results): `, search("Eminem", 2002));
 console.log("\n"); // End Stretch #1.
 
 
-// - #S2.) Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
-//   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
+// - #S2.) Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property: (DONE)
+//   - Update the `addToCollection` function to also take an input parameter for the array of tracks. (DONE)
 //   - Update `search` to allow a `trackName` search criteria.
 //   - Update the `showCollection` function to display the list of tracks for each album with its name and duration.
 // ```
@@ -163,4 +164,26 @@ console.log("\n"); // End Stretch #2.
 
 
 
-//
+// Save code below
+
+// console.log("--- Stretch #1. ---");
+// const search = (artist, year) => {
+//   if ((artist == "" || year == "") || (artist == null && year == null) || (artist == undefined && year == undefined)) { // If empty search critera conditional:
+//     return collection; // Return all albums in 'collection'.
+//   } // End empty search criteria conditional.
+//   let results = [];
+//   for (let i in collection) {
+//     if ((artist == collection[i].artist || artist == collection[i].title || artist == collection[i].yearPublished) && (year == collection[i].artist || year == collection[i].title || year == collection[i].yearPublished)) { // If (artist matches any of the artist, title, OR yearPublished info) AND (year matches any of the artist, title, OR yearPublished info):
+//       results.push(collection[i]); // Add it to the new 'results' array.
+//     } // End "if object == collection" conditional.
+//   } // End "for i in collection" loop.
+//   return results;
+// }; // End "search".
+// console.log("The 'search' function has been created.  Tested below.");
+// console.log(`Testing 'search("Eminem")' function (expect '2' results): `, search("Eminem")); // Broken by adding year parameter.
+// console.log(`Testing 'search("2004")' function (expect '2' results): `, search("2004")); // Broken by adding year parameter.
+// console.log(`Testing 'search("The Sickness")' function (expect '1' result): `, search("The Sickness")); // Broken by adding year parameter.
+// console.log(`Testing 'search()' function empty conditional (expect '6' results): `, search());
+// console.log(`Testing 'search("")' function empty conditional (expect '6' results): `, search(""));
+// console.log(`Testing 'search("Eminem", 2002)' function (expect '1' results): `, search("Eminem", 2002));
+// console.log("\n"); // End Stretch #1.
