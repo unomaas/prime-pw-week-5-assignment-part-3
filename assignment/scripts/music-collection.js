@@ -113,14 +113,14 @@ console.log("\n"); // End Question #7.
 //   - If no results are found, return an empty array.
 //   - If there is no search object or an empty search object provided as input, then return all albums in the `collection`.
 console.log("--- Stretch #1. ---");
-const search = object => {
-  if (object == "" || object == null || object == undefined) { // If empty search critera conditional:
+const search = (object1, object2) => {
+  if ((object1 == "") && (object2 == "")) { // If empty search critera conditional:
     return collection; // Return all albums in 'collection'.
   } // End empty search criteria conditional.
   let results = [];
   for (let i in collection) {
-    if (object == collection[i].artist || object == collection[i].title || object == collection[i].yearPublished) {
-      results.push(collection[i]);
+    if ((object1 == collection[i].artist || object1 == collection[i].title || object1 == collection[i].yearPublished) && (object2 == collection[i].artist || object2 == collection[i].title || object2 == collection[i].yearPublished)) { // If object matches any of the artist, title, OR yearPublished info:
+      results.push(collection[i]); // Add it to the new 'results' array.
     } // End "if object == collection" conditional.
   } // End "for i in collection" loop.
   return results;
@@ -131,6 +131,7 @@ console.log(`Testing 'search("2004")' function (expect '2' results): `, search("
 console.log(`Testing 'search("The Sickness")' function (expect '1' result): `, search("The Sickness"));
 console.log(`Testing 'search()' function empty conditional (expect '6' results): `, search());
 console.log(`Testing 'search("")' function empty conditional (expect '6' results): `, search(""));
+console.log(`Testing 'search("Eminem", 2002)' function (expect '2' results): `, search("Eminem", 2002));
 console.log("\n"); // End Stretch #1.
 
 
