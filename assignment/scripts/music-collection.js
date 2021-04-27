@@ -24,8 +24,7 @@ const addToCollection = (title, artist, yearPublished) => { // To practice conve
   collection.push(addition);
   return addition;
 }; // End "addToCollection".
-console.log(`Adding 'Greatest Hits by The Offspring' to 'collection' array via 'addToCollection' function: `, addToCollection("Greatest Hits", "The Offspring", 2005));
-console.log(`Showing the 'collection' array (expect 1 object literal): `, collection);
+console.log("The 'showCollection' function has been created.  Tested in next question.");
 console.log("\n"); // End Question #2.
 
 
@@ -40,7 +39,7 @@ console.log(`Adding Album 3 of 6 via 'addToCollection' function: `, addToCollect
 console.log(`Adding Album 4 of 6 via 'addToCollection' function: `, addToCollection("The Eminem Show", "Eminem", 2002));
 console.log(`Adding Album 5 of 6 via 'addToCollection' function: `, addToCollection("Encore", "Eminem", 2004));
 console.log(`Adding Album 6 of 6 via 'addToCollection' function: `, addToCollection("D12 World", "D12", 2004));
-console.log(`Showing the 'collection' array (expect 7 object literals): `, collection);
+console.log(`Showing the 'collection' array (expect 6 object literals): `, collection);
 console.log("\n"); // End Question #3.
 
 
@@ -73,12 +72,12 @@ console.log("\n"); // End Question #5.
 //   - Loop through the `collection` and add any objects with a matching artist to the array.
 //   - Return the array with the matching results. If no results are found, return an empty array. (DONE)
 console.log("--- Question #6. ---");
-const findByArtist = name => {
+const findByArtist = name => { // If we wanted to make this function non-specific to the "collection" array, we'd want to add an "array" parameter here as well, right?
   let results = [];
-  for (let i in collection) {
-    if (name == collection[i].artist) {
-      results.push(collection[i]);
-    }
+  for (let i in collection) { // And then all "collection" references to "array".
+    if (name == collection[i].artist) { // If the input 'name' matches the 'collection' 'artist' name:
+      results.push(collection[i]); // Add that artist to the empty array 'results'.
+    } // End "if name == artist" conditional.
   } // End "for i in collection" loop.
   return results;
 }; // End "findByArtist".
@@ -88,9 +87,9 @@ console.log("\n"); // End Question #6.
 
 // - #7.) Test the `findByArtist` function. Make sure to test with an artist you know is in the collection, as well as an artist you know is not in your collection. Check that for artists with multiple matches, all are found.
 console.log("--- Question #7. ---");
-console.log(`Testing 'findByArtist("Eminem")' (expect '2' returns): `, findByArtist("Eminem"));
-console.log(`Testing 'findByArtist("Disturbed")' (expect '1' return): `, findByArtist("Disturbed"));
-console.log(`Testing 'findByArtist("Weird Al")' (expect empty array): `, findByArtist("Weird Al"));
+console.log(`Testing 'findByArtist("Eminem")' function (expect '2' results): `, findByArtist("Eminem"));
+console.log(`Testing 'findByArtist("Disturbed")' function (expect '1' result): `, findByArtist("Disturbed"));
+console.log(`Testing 'findByArtist("Weird Al Yankovich")' function (expect empty array): `, findByArtist("Weird Al"));
 console.log("\n"); // End Question #7.
 
 
@@ -107,17 +106,35 @@ console.log("\n"); // End Question #7.
 
 
 // ### Stretch goals
-//
-// - Create a function called `search`. This function should:
+// - #S1.) Create a function called `search`. This function should:
 //   - Take an input parameter for a search criteria object. The search criteria might look sosomething like this:
-//   ```
-//   { artist: 'Ray Charles', year: 1957 }
-//   ```
+//      { artist: 'Ray Charles', year: 1957 }
 //   - Return a new array of all items in the `collection` matching *all* of the search criteria.
 //   - If no results are found, return an empty array.
 //   - If there is no search object or an empty search object provided as input, then return all albums in the `collection`.
-//
-// - Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
+console.log("--- Stretch #1. ---");
+const search = object => {
+  if (object == "" || object == null || object == undefined) { // If empty search critera conditional:
+    return collection; // Return all albums in 'collection'.
+  } // End empty search criteria conditional.
+  let results = [];
+  for (let i in collection) {
+    if (object == collection[i].artist || object == collection[i].title || object == collection[i].yearPublished) {
+      results.push(collection[i]);
+    } // End "if object == collection" conditional.
+  } // End "for i in collection" loop.
+  return results;
+}; // End "search".
+console.log("The 'search' function has been created.  Tested below.");
+console.log(`Testing 'search("Eminem")' function (expect '2' results): `, search("Eminem"));
+console.log(`Testing 'search("2004")' function (expect '2' results): `, search("2004"));
+console.log(`Testing 'search("The Sickness")' function (expect '1' result): `, search("The Sickness"));
+console.log(`Testing 'search()' function empty conditional (expect '6' results): `, search());
+console.log(`Testing 'search("")' function empty conditional (expect '6' results): `, search(""));
+console.log("\n"); // End Stretch #1.
+
+
+// - #S2.) Add an array of `tracks` to your album objects. Each track should have a `name` and `duration`. You will need to update the functions to support this new property:
 //   - Update the `addToCollection` function to also take an input parameter for the array of tracks.
 //   - Update `search` to allow a `trackName` search criteria.
 //   - Update the `showCollection` function to display the list of tracks for each album with its name and duration.
@@ -130,6 +147,9 @@ console.log("\n"); // End Question #7.
 //     1. NAME: DURATION
 //     2. NAME: DURATION
 // ```
+console.log("--- Stretch #2. ---");
+
+console.log("\n"); // End Stretch #2.
 
 
 
